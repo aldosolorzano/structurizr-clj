@@ -34,7 +34,7 @@
   ([model key description]
    (add-software-system model key description []))
   ([model key description tags]
-   (let [software-system (.addSoftwareSystem model key description )]
+   (let [software-system (.addSoftwareSystem model key description)]
      (add-tags software-system tags))))
 
 (defn add-container
@@ -109,16 +109,14 @@
   (.addAllElements view))
 
 (defmacro defworkspace
-  "NOTE: Not finished yet, Creates a workspace and binds it to Var name"
+  "NOTE: Rework todo, Creates a workspace and binds it to Var name"
   [& params]
-  (let [workspace-name             (first params)
-        [_ workspace :as bindings] (second params)
-        model                      (last params)]
+  (let [workspace-name                   (first params)
+        [workspace-binding :as bindings] (second params)
+        model                            (last params)]
     `(let ~bindings
        ~model
-       ~workspace)))
-
-;; Main Macros
+       (def ~workspace-name ~workspace-binding))))
 
 (defmacro defmodel
   [system-bindings
