@@ -1,6 +1,6 @@
 (ns structurizr-clj.core-test
   (:require [clojure.test :refer :all]
-            [structurizr-clj.core :refer [defworkspace defmodel defviews defstyles] :as structurizr]))
+            [structurizr-clj.core :refer [defmodel defstyles defviews defworkspace] :as structurizr]))
 
 (defworkspace my-workspace
   [workspace (structurizr/new-workspace "My Workspace" " My Workspace Architecture")]
