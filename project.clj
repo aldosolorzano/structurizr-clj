@@ -6,7 +6,9 @@
   :plugins [[lein-nsorg "0.3.0"]]
 
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [com.structurizr/structurizr-client "1.6.3"]]
+                 [com.structurizr/structurizr-client "1.6.3"]
+                 [com.structurizr/structurizr-plantuml "1.5.0"]
+                 [com.structurizr/structurizr-mermaid "1.4.0"]]
 
   :profiles {:dev {:dependencies [[clj-kondo "2020.05.02"]
                                   [cljfmt "0.6.7"]]}}
