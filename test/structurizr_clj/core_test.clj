@@ -24,3 +24,10 @@
   (testing "Nothing breaks and the workspace is a com.structurizr.Workspace"
     (is (= com.structurizr.Workspace (class my-workspace)))))
 
+(def client (structurizr/client "api-key" "api-secret"))
+(def client-2 (structurizr/client "http://localhost" "api-key" "api-secret"))
+
+(deftest client-test
+  (testing "Client returns a structurizr client"
+    (is (= com.structurizr.api.StructurizrClient (class client)))
+    (is (= "http://localhost" (.getUrl client-2)))))

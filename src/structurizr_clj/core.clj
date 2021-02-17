@@ -1,5 +1,6 @@
 (ns structurizr-clj.core
-  (:import (com.structurizr Workspace)))
+  (:import (com.structurizr Workspace)
+           (com.structurizr.api StructurizrClient)))
 
 ;; Tags
 
@@ -162,3 +163,13 @@
    & definitions]
   `(let ~bindings
      ~@definitions))
+
+(defn client
+  ([api-key api-secret]
+   (StructurizrClient. api-key api-secret))
+  ([url api-key api-secret]
+   (StructurizrClient. url api-key api-secret)))
+
+(defn publish-workspace
+  [client workscape-id workspace]
+  (.putWorkspace client workscape-id workspace))
