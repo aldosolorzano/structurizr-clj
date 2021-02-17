@@ -25,10 +25,10 @@
 ;; Model
 
 (defn add-person
-  ([model key description technology]
-   (add-person model key description technology []))
-  ([model key description technology tags]
-   (let [person (.addPerson model key description technology)]
+  ([model key description]
+   (add-person model key description []))
+  ([model key description tags]
+   (let [person (.addPerson model key description)]
      (add-tags person tags))))
 
 (defn add-software-system
@@ -53,8 +53,10 @@
      (add-tags component tags))))
 
 (defn uses
-  [node-a node-b description sub]
-  (.uses node-a node-b description sub))
+  ([node-a node-b description]
+   (.uses node-a node-b description))
+  ([node-a node-b description technology]
+   (.uses node-a node-b description technology)))
 
 ;; Views
 
@@ -113,6 +115,10 @@
   (.shape style-item  shape-name))
 
 ;; Renders
+
+(defn add-all-people
+  [view]
+  (.addAllPeople view))
 
 (defn add-all-software-systems
   [view]

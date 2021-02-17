@@ -11,7 +11,7 @@
             []
     (structurizr/uses yo-service database "Persists data" "Datomic")
     (defviews [views           (structurizr/views workspace)
-               containers-view (structurizr/create-container-view views software-system "Containers" "Chargeback services")]
+               containers-view (structurizr/create-container-view views software-system "Containers" "My services")]
       (defstyles [styles (structurizr/styles views)]
         (doto (structurizr/add-element-style styles "Main")
           (.background "#800080")
