@@ -43,8 +43,10 @@ _(This is a libary in alpha version, it's very likely to change.)_
         structurizr/add-all-containers))))
 ```
 
-![Image System Context diagram](doc/images/example-SystemContext.png)
-![Image Containers diagram](doc/images/example-Containers.png)
+<p align="center">
+ <img src="doc/images/example-SystemContext.png" width="620" height="437">
+ <img src="doc/images/example-Containers.png" width="310" height="437">
+</p>
 
 ## Render Workspace
 
