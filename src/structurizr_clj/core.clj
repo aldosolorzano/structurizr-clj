@@ -1,5 +1,6 @@
 (ns structurizr-clj.core
-  (:import (com.structurizr Workspace)))
+  (:import (com.structurizr Workspace)
+           (com.structurizr.api StructurizrClient)))
 
 ;; Tags
 
@@ -38,11 +39,18 @@
      (add-tags software-system tags))))
 
 (defn add-container
-  ([model key description technology]
-   (add-container model key description technology []))
-  ([model key description technology tags]
-   (let [container (.addContainer model key description technology)]
+  ([sofware-system key description technology]
+   (add-container sofware-system key description technology []))
+  ([software-system key description technology tags]
+   (let [container (.addContainer software-system key description technology)]
      (add-tags container tags))))
+
+(defn add-component
+  ([container key description technology]
+   (add-component container key description technology []))
+  ([container key description technology tags]
+   (let [component (.addComponent container key description technology)]
+     (add-tags component tags))))
 
 (defn uses
   [node-a node-b description sub]
@@ -55,15 +63,25 @@
   [workspace]
   (.getViews workspace))
 
-(defn create-container-view
-  "Creates ContainerView for given software-system"
-  [views software-system key description]
-  (.createContainerView views software-system key description))
+(defn create-system-landscape-view
+  "Creates SystemLandscape view "
+  [views  key description]
+  (.createSystemLandscapeView views key description))
 
 (defn create-system-context-view
   "Creates SystemContextView for given software-system"
   [views software-system key description]
   (.createSystemContextView views software-system key description))
+
+(defn create-container-view
+  "Creates ContainerView for given software-system"
+  [views software-system key description]
+  (.createContainerView views software-system key description))
+
+(defn create-component-view
+  "Creates ComponentView for given container"
+  [views container key description]
+  (.createComponentView views container key description))
 
 (defn configuration
   "Gets configuration for given views"
@@ -104,6 +122,10 @@
   [view]
   (.addAllContainers view))
 
+(defn add-all-components
+  [view]
+  (.addAllComponents view))
+
 (defn add-all-elements
   [view]
   (.addAllElements view))
@@ -119,6 +141,7 @@
        (def ~workspace-name ~workspace-binding))))
 
 (defmacro defmodel
+  "Somewhat a let wrapper, it receives three vector of bindings to improve code structure when creating diagrams"
   [system-bindings
    container-bindings
    component-bindings & body]
@@ -126,6 +149,7 @@
      ~@body))
 
 (defmacro defviews
+  "A let wrapper to improve code readability and structure when creating diagrams"
   [bindings
    styles
    & renders]
@@ -134,7 +158,18 @@
      ~@renders))
 
 (defmacro defstyles
+  "A let wrapper to improve code readability and structure when creating diagrams"
   [bindings
    & definitions]
   `(let ~bindings
      ~@definitions))
+
+(defn client
+  ([api-key api-secret]
+   (StructurizrClient. api-key api-secret))
+  ([url api-key api-secret]
+   (StructurizrClient. url api-key api-secret)))
+
+(defn publish-workspace
+  [client workscape-id workspace]
+  (.putWorkspace client workscape-id workspace))
