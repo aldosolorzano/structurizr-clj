@@ -1,13 +1,14 @@
 (ns structurizr-clj.render
-  (:import (com.structurizr.io.plantuml StructurizrPlantUMLWriter)
-           (com.structurizr.io.mermaid MermaidWriter)))
+  (:import (com.structurizr.io.mermaid MermaidWriter)
+           (com.structurizr.io.plantuml StructurizrPlantUMLWriter)))
 
-(defn get-key [view]
+(defn get-key
+  [view]
   (.getKey view))
 
 (defn system-landscape-views
   [views]
-  (.getSystemLandscapetViews views))
+  (.getSystemLandscapeViews views))
 
 (defn system-context-views
   [views]
@@ -21,12 +22,24 @@
   [views]
   (.getComponentViews views))
 
-(defn plantUML-writer
-  [view path]
+(defn plantuml
+  "Receives a structurizr.View and returns the plantUML encoding as string"
+  [view]
   (let [writer (StructurizrPlantUMLWriter.)]
-    (spit path (.toString writer view))))
+    (.toString writer view)))
+
+(defn mermaid
+  "Receives a structurizr.View and returns the mermaid encoding as string"
+  [view]
+  (let [writer (MermaidWriter.)]
+    (.toString writer view)))
+
+(defn plantuml-writer
+  "Receives a structurizr.View and a path and writes the plantUML code to the file"
+  [view path]
+  (spit path (plantuml view)))
 
 (defn mermaid-writer
+  "Receives a structurizr.View and a path and writes the mermaid code to the file"
   [view path]
-  (let [writer (MermaidWriter.)]
-    (spit path (.toString writer view))))
+  (spit path (mermaid view)))
