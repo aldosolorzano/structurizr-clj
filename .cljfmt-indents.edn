@@ -1,0 +1,4 @@
+{defworkspace [[:block 1]]
+ defmodel     [[:block 3]]
+ defviews     [[:block 1]]
+ defstyles    [[:block 1]]}
