@@ -36,11 +36,11 @@ _(This is a libary in alpha version, it's very likely to change)_
               (.background "#800080")
               (.color "#ffffff")))
       (doto software-system-view
-        structurizr/add-all-software-systems
-        structurizr/add-all-people)
+            structurizr/add-all-software-systems
+            structurizr/add-all-people)
       (doto containers-view
-        structurizr/add-all-software-systems
-        structurizr/add-all-containers))))
+            structurizr/add-all-software-systems
+            structurizr/add-all-containers))))
 ```
 
 <p align="center">

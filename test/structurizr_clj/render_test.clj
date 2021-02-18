@@ -18,16 +18,16 @@
                containers-view       (structurizr/create-container-view views software-system "Containers view" "My services")
                component-view        (structurizr/create-component-view views yo-service "Component view" "HTTP interaction")]
       (doto system-landscape-view
-        structurizr/add-all-software-systems)
+            structurizr/add-all-software-systems)
       (doto system-context-view
-        structurizr/add-all-software-systems
-        structurizr/add-all-elements)
+            structurizr/add-all-software-systems
+            structurizr/add-all-elements)
       (doto containers-view
-        structurizr/add-all-software-systems
-        structurizr/add-all-containers)
+            structurizr/add-all-software-systems
+            structurizr/add-all-containers)
       (doto component-view
-        structurizr/add-all-containers
-        structurizr/add-all-components))))
+            structurizr/add-all-containers
+            structurizr/add-all-components))))
 
 (def tmp
   (str (.toString (io/file (System/getProperty "java.io.tmpdir"))) "/"))
