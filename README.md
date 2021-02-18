@@ -11,7 +11,7 @@ _(This is a libary in alpha version, it's very likely to change)_
 ``` clojure
 
 (ns diagram-example
-  (:require[structurizr-clj.core :refer [defmodel defstyles defviews defworkspace] :as structurizr]))
+  (:require [structurizr-clj.core :refer [defmodel defstyles defviews defworkspace] :as structurizr]))
   (:import (com.structurizr.view Shape)
 
 (defworkspace example

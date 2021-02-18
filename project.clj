@@ -12,8 +12,8 @@
 
   :profiles {:dev {:dependencies [[clj-kondo "2020.05.02"]
                                   [cljfmt "0.6.7"]]}}
-  :aliases {"clj-kondo"       ["run" "-m" "clj-kondo.main" "--config" ".clj-kondo/config.edn" "--lint" "src" "test"]
-            "cljfmt"          ["run" "-m" "cljfmt.main" "--indents" ".cljfmt-indents.edn"]
-            "lint"            ["do" ["clj-kondo"] ["cljfmt" "check"] ["nsorg"]]
-            "lint-fix"        ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
+  :aliases {"clj-kondo" ["run" "-m" "clj-kondo.main" "--config" ".clj-kondo/config.edn" "--lint" "src" "test"]
+            "cljfmt"    ["run" "-m" "cljfmt.main" "--indents" ".cljfmt-indents.edn"]
+            "lint"      ["do" ["clj-kondo"] ["cljfmt" "check"] ["nsorg"]]
+            "lint-fix"  ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
   :repl-options {:init-ns structurizr-clj.core})
