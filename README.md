@@ -1,4 +1,5 @@
 # Structurizr for Clojure
+
 [![Clojars Project](https://img.shields.io/clojars/v/structurizr-clj.svg)](https://clojars.org/structurizr-clj)
 
 A Clojure library designed to generate software architecture models based upon the C4 model, it uses the [Structurizr Java library](https://github.com/structurizr/java) under the hood. In other words is a wrapper with the most common functions used in the Java library with some syntax sugar macros to better structure the diagram code in a Clojure style.
@@ -29,13 +30,13 @@ _(This is a libary in alpha version, it's very likely to change)_
                containers-view      (structurizr/create-container-view views software-system "Containers" "An example of Container context diagram")
                software-system-view (structurizr/create-system-context-view views software-system "System Context" "An example of a System Context diagram")]
       (defstyles [styles (structurizr/styles views)]
-        (doto (.addElementStyle styles "User")
-              (.shape Shape/Person))
-        (doto (.addElementStyle styles "Database")
-              (.shape Shape/Cylinder))
+        (doto (structurizr/add-element-style styles "User")
+              (structurizr/shape Shape/Person))
+        (doto (structurizr/add-element-style styles "Database")
+              (structurizr/shape Shape/Cylinder))
         (doto (structurizr/add-element-style styles "Main")
-              (.background "#800080")
-              (.color "#ffffff")))
+              (structurizr/background "#800080")
+              (structurizr/color "#ffffff")))
       (doto software-system-view
             structurizr/add-all-software-systems
             structurizr/add-all-people)
