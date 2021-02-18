@@ -4,7 +4,7 @@ A Clojure library designed to generate software architecture models based upon t
 
 Go to the [Structurizr documentation](https://github.com/structurizr/java#table-of-contents) to understand the C4 model and the concepts behind structurizr (workspaces, model and views).
 
-_(This is a libary in alpha version, it's very likely to change.)_
+_(This is a libary in alpha version, it's very likely to change)_
 
 ## Example
 
