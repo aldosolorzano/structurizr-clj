@@ -4,6 +4,8 @@ A Clojure library designed to generate software architecture models based upon t
 
 Go to the [Structurizr documentation](https://github.com/structurizr/java#table-of-contents) to understand the C4 model and the concepts behind structurizr (workspaces, model and views).
 
+_(This is a libary in alpha version, it's very likely to change)_
+
 ## Example
 
 ``` clojure
@@ -41,8 +43,10 @@ Go to the [Structurizr documentation](https://github.com/structurizr/java#table-
         structurizr/add-all-containers))))
 ```
 
-![Image System Context diagram](doc/images/example-SystemContext.png)
-![Image Containers diagram](doc/images/example-Containers.png)
+<p align="center">
+ <img src="doc/images/example-SystemContext.png" width="620" height="437">
+ <img src="doc/images/example-Containers.png" width="310" height="437">
+</p>
 
 ## Render Workspace
 
