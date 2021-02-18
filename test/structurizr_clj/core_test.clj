@@ -14,11 +14,11 @@
                containers-view (structurizr/create-container-view views software-system "Containers" "My services")]
       (defstyles [styles (structurizr/styles views)]
         (doto (structurizr/add-element-style styles "Main")
-          (.background "#800080")
-          (.color "#ffffff")))
+              (.background "#800080")
+              (.color "#ffffff")))
       (doto containers-view
-        structurizr/add-all-software-systems
-        structurizr/add-all-containers))))
+            structurizr/add-all-software-systems
+            structurizr/add-all-containers))))
 
 (deftest workspace-test
   (testing "Nothing breaks and the workspace is a com.structurizr.Workspace"
