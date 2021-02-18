@@ -1,4 +1,5 @@
 # Structurizr for Clojure
+[![Clojars Project](https://img.shields.io/clojars/v/structurizr-clj.svg)](https://clojars.org/structurizr-clj)
 
 A Clojure library designed to generate software architecture models based upon the C4 model, it uses the [Structurizr Java library](https://github.com/structurizr/java) under the hood. In other words is a wrapper with the most common functions used in the Java library with some syntax sugar macros to better structure the diagram code in a Clojure style.
 
