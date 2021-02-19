@@ -5,6 +5,11 @@
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
   :plugins [[lein-nsorg "0.3.0"]]
 
+  :deploy-repositories [["clojars" {:url           "https://repo.clojars.org"
+                                    :username      :env/clojars_username
+                                    :password      :env/clojars_password
+                                    :sign-releases false}]]
+
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [com.structurizr/structurizr-client "1.6.3"]
                  [com.structurizr/structurizr-plantuml "1.5.0"]
