@@ -16,10 +16,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Cache local Maven repository
-          uses: actions/cache@v2
-          with:
-            path: ~/.m2/repository
-            key: ${{ runner.os }}-lein-${{ hashFiles('**/project.clj') }}
-            restore-keys: ${{ runner.os }}-lein-
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-lein-${{ hashFiles('**/project.clj') }}
+          restore-keys: ${{ runner.os }}-lein-
       - name: Run test
         run: lein test
