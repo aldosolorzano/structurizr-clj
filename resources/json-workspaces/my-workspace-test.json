@@ -1,0 +1,143 @@
+{
+  "id": 1234,
+  "name": "Getting Started",
+  "description": "This is a model of my software system",
+  "revision": 38,
+  "lastModifiedDate": "2021-02-22T18:53:10Z",
+  "lastModifiedUser": "aldo@aldo",
+  "lastModifiedAgent": "structurizr-java/1.6.3",
+  "model": {
+    "people": [
+      {
+        "id": "1",
+        "tags": "Element,Person",
+        "name": "User",
+        "description": "A user of my software system",
+        "relationships": [
+          {
+            "id": "5",
+            "tags": "Relationship",
+            "sourceId": "1",
+            "destinationId": "2",
+            "description": "Uses"
+          }
+        ],
+        "location": "Unspecified"
+      }
+    ],
+    "softwareSystems": [
+      {
+        "id": "2",
+        "tags": "Element,Software System",
+        "name": "Software System",
+        "description": "My software system",
+        "location": "Unspecified",
+        "containers": [
+          {
+            "id": "3",
+            "tags": "Element,Container,Main",
+            "name": "Yo",
+            "description": "Service",
+            "relationships": [
+              {
+                "id": "6",
+                "tags": "Relationship",
+                "sourceId": "3",
+                "destinationId": "4",
+                "description": "Persists data",
+                "technology": "Datomic"
+              }
+            ],
+            "technology": "Clojure"
+          },
+          {
+            "id": "4",
+            "tags": "Element,Container,Database",
+            "name": "Database",
+            "description": "Main database",
+            "technology": "Datomic"
+          }
+        ]
+      }
+    ]
+  },
+  "documentation": {
+  },
+  "views": {
+    "systemContextViews": [
+      {
+        "softwareSystemId": "2",
+        "description": "An example of a System Context diagram",
+        "key": "System Context",
+        "enterpriseBoundaryVisible": true,
+        "elements": [
+          {
+            "id": "1",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "2",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "relationships": [
+          {
+            "id": "5"
+          }
+        ]
+      }
+    ],
+    "containerViews": [
+      {
+        "softwareSystemId": "2",
+        "description": "An example of Container context diagram",
+        "key": "Containers",
+        "paperSize": "A2_Landscape",
+        "externalSoftwareSystemBoundariesVisible": false,
+        "elements": [
+          {
+            "id": "3",
+            "x": 0,
+            "y": 0
+          },
+          {
+            "id": "4",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "relationships": [
+          {
+            "id": "6"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "branding": {
+      },
+      "styles": {
+        "elements": [
+          {
+            "tag": "Person",
+            "shape": "Person"
+          },
+          {
+            "tag": "Database",
+            "shape": "Cylinder"
+          },
+          {
+            "tag": "Main",
+            "background": "#800080",
+            "color": "#ffffff"
+          }
+        ]
+      },
+      "terminology": {
+      },
+      "lastSavedView": "SystemContext"
+    }
+  }
+}
