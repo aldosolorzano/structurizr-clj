@@ -1,5 +1,5 @@
 {:skip-comments true
  :linters       {:refer-all         {:level :off}
                  :unresolved-symbol {:level :off}}
- :lint-as       {structurizr/defstyles clojure.core/let
-                 structurizr/defview   clojure.core/let}}
+ :lint-as       {structurizr-clj.core/defstyles clojure.core/let
+                 structurizr-clj.core/defview   clojure.core/let}}

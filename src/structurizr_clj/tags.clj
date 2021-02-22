@@ -1,0 +1,15 @@
+(ns structurizr-clj.tags
+  (:import (com.structurizr.model Tags)))
+
+(def person Tags/PERSON)
+(def element Tags/ELEMENT)
+(def relationship Tags/RELATIONSHIP)
+(def software-system Tags/SOFTWARE_SYSTEM)
+(def container Tags/CONTAINER)
+(def component Tags/COMPONENT)
+(def deployment-node Tags/DEPLOYMENT_NODE)
+(def infrastructure-node Tags/INFRASTRUCTURE_NODE)
+(def software-system-instance Tags/SOFTWARE_SYSTEM_INSTANCE)
+(def container-instance Tags/CONTAINER_INSTANCE)
+(def synchronous Tags/SYNCHRONOUS)
+(def asynchronous Tags/ASYNCHRONOUS)

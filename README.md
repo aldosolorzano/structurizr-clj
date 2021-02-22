@@ -13,15 +13,16 @@ _(This is a libary in alpha version, it's very likely to change)_
 ``` clojure
 
 (ns diagram-example
-  (:require [structurizr-clj.core :refer [defmodel defstyles defviews defworkspace] :as structurizr]))
-  (:import (com.structurizr.view Shape)
+  (:require [structurizr-clj.core :refer [defmodel defstyles defviews defworkspace] :as structurizr]
+            [structurizr-clj.shape :as structurizr.shape]
+            [structurizr-clj.tags :as structurizr.tags]))
 
 (defworkspace example
   [workspace (structurizr/new-workspace "Getting Started" "This is a model of my software system")]
   (defmodel [model           (structurizr/model workspace)
-             user            (structurizr/add-person model "User" "A user of my software system" ["User"])
+             user            (structurizr/add-person model "User" "A user of my software system" [structurizr.tags/person])
              software-system (structurizr/add-software-system model "Software System" "My software system")]
-            [yo-service (structurizr/add-container software-system "Yo" "Service" "Clojure" ["Main"]) 
+            [yo-service (structurizr/add-container software-system "Yo" "Service" "Clojure" ["Main"])
              database   (structurizr/add-container software-system "Database" "Main database" "Datomic" ["Database"])]
             []
     (structurizr/uses user software-system "Uses")
@@ -30,10 +31,10 @@ _(This is a libary in alpha version, it's very likely to change)_
                containers-view      (structurizr/create-container-view views software-system "Containers" "An example of Container context diagram")
                software-system-view (structurizr/create-system-context-view views software-system "System Context" "An example of a System Context diagram")]
       (defstyles [styles (structurizr/styles views)]
-        (doto (structurizr/add-element-style styles "User")
-              (structurizr/shape Shape/Person))
+        (doto (structurizr/add-element-style styles structurizr.tags/person)
+              (structurizr/shape structurizr.shape/person))
         (doto (structurizr/add-element-style styles "Database")
-              (structurizr/shape Shape/Cylinder))
+              (structurizr/shape structurizr.shape/cylinder))
         (doto (structurizr/add-element-style styles "Main")
               (structurizr/background "#800080")
               (structurizr/color "#ffffff")))

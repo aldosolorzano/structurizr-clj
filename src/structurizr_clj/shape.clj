@@ -1,0 +1,17 @@
+(ns structurizr-clj.shape
+  (:import (com.structurizr.view Shape)))
+
+(def box Shape/Box)
+(def rounded-box Shape/RoundedBox)
+(def circle Shape/Circle)
+(def ellipse Shape/Ellipse)
+(def hexagon Shape/Hexagon)
+(def cylinder Shape/Cylinder)
+(def pipe Shape/Pipe)
+(def person Shape/Person)
+(def robot Shape/Robot)
+(def folder Shape/Folder)
+(def web-browser Shape/WebBrowser)
+(def mobile-device-portrait Shape/MobileDevicePortrait)
+(def mobile-device-landscape Shape/MobileDeviceLandscape)
+(def component Shape/Component)

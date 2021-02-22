@@ -15,9 +15,9 @@
                  [com.structurizr/structurizr-plantuml "1.5.0"]
                  [com.structurizr/structurizr-mermaid "1.4.0"]]
 
-  :profiles {:dev {:dependencies [[clj-kondo "2020.05.02"]
-                                  [cljfmt "0.6.7"]]}}
-  :aliases {"clj-kondo" ["run" "-m" "clj-kondo.main" "--config" ".clj-kondo/config.edn" "--lint" "src" "test"]
+  :profiles {:dev {:dependencies [[clj-kondo "2021.02.13"]
+                                  [cljfmt "0.7.0"]]}}
+  :aliases {"clj-kondo" ["run" "-m" "clj-kondo.main" "--config" ".github/linters/.clj-kondo/config.edn" "--lint" "src" "test"]
             "cljfmt"    ["run" "-m" "cljfmt.main" "--indents" ".cljfmt-indents.edn"]
             "lint"      ["do" ["clj-kondo"] ["cljfmt" "check"] ["nsorg"]]
             "lint-fix"  ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]}
