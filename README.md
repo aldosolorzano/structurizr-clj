@@ -53,7 +53,7 @@ _(This is a libary in alpha version, it's very likely to change)_
 
 ## Render Workspace
 
-Structurizr Java supports renders to plantUML, Mermaid and publish the workspace to the structurizr cloud or on-premise server. This libary supports the three of them, shown below.
+Structurizr Java supports renders to PlantUML, Mermaid, JSON and publish the workspace to the structurizr cloud or on-premise server. 
 
 ### Publish workspace
 
@@ -76,16 +76,16 @@ Structurizr Java supports renders to plantUML, Mermaid and publish the workspace
 ``` clojure
 (ns render-example
   (:require [structurizr-clj.core :refer [defmodel defviews defworkspace] :as structurizr]
-            [structurizr-clj.render :as render]))
+            [structurizr-clj.render :as structurizr.render]))
 
 ;; Asuming an example workspace is define
 (def views (structurizr/views example))
 
 ;; There might be many system contex views define, in this case it takes the first one
-(def system-context-view (first (render/system-context-views views))) 
+(def system-context-view (first (structurizr.render/system-context-views views))) 
 
-(render/mermaid system-context-view) ;; Returns the string mermaid code
-(render/mermaid-writer system-context-view "path/mermaid.txt") ;; Writes a file with the mermaid code to the given path
+(structurizr.render/mermaid system-context-view) ;; Returns the string mermaid code
+(structurizr.render/mermaid-writer system-context-view "path/mermaid.txt") ;; Writes a file with the mermaid code to the given path
 
 ```
 
@@ -94,16 +94,29 @@ Structurizr Java supports renders to plantUML, Mermaid and publish the workspace
 ``` clojure
 (ns render-example
   (:require [structurizr-clj.core :refer [defmodel defviews defworkspace] :as structurizr]
-            [structurizr-clj.render :as render]))
+            [structurizr-clj.render :as structurizr.render]))
 
 ;; Asuming an example workspace is define
 (def views (structurizr/views example))
 
 ;; There might be many system contex views define, in this case it takes the first one
-(def system-context-view (first (render/system-context-views views))) 
+(def system-context-view (first (structurizr.render/system-context-views views))) 
 
-(render/plantuml system-context-view) ;; Returns the string plantuml code
-(render/plantuml-writer system-context-view "path/plantuml.txt") ;; Writes a file with the plantuml code to the given path
+(structurizr.render/plantuml system-context-view) ;; Returns the string plantuml code
+(structurizr.render/plantuml-writer system-context-view "path/plantuml.txt") ;; Writes a file with the plantuml code to the given path
+
+```
+
+### JSON
+
+``` clojure
+(ns render-example
+  (:require [structurizr-clj.core :refer [defmodel defviews defworkspace] :as structurizr]
+            [structurizr-clj.render :as structurizr.render]))
+
+;; Assuming an example workspace is defined
+(structurizr.render/workspace->json example "path/my-workspace.json") ;; Writes JSON file with the workspace data 
+(structurizr.render/json->workspace "path/my-workspace.json") ;; Loads workspace from JSON file
 
 ```
 
