@@ -1,6 +1,8 @@
 (ns structurizr-clj.render
+  (:require [clojure.java.io :as io])
   (:import (com.structurizr.io.mermaid MermaidWriter)
-           (com.structurizr.io.plantuml StructurizrPlantUMLWriter)))
+           (com.structurizr.io.plantuml StructurizrPlantUMLWriter)
+           (com.structurizr.util WorkspaceUtils)))
 
 (defn get-key
   [view]
@@ -43,3 +45,13 @@
   "Receives a structurizr.View and a path and writes the mermaid code to the file"
   [view path]
   (spit path (mermaid view)))
+
+(defn workspace->json
+  "Writes a JSON file to the given path with the workspace data"
+  [workspace file-path]
+  (WorkspaceUtils/saveWorkspaceToJson workspace (io/file file-path)))
+
+(defn json->workspace
+  "Creates a workspace from a JSON defined in the given path"
+  [file-path]
+  (WorkspaceUtils/loadWorkspaceFromJson (io/file file-path)))
