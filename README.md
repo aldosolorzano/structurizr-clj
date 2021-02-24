@@ -15,7 +15,9 @@ _(This is a libary in alpha version, it's very likely to change)_
 (ns diagram-example
   (:require [structurizr-clj.core :refer [defmodel defstyles defviews defworkspace] :as structurizr]
             [structurizr-clj.shape :as structurizr.shape]
-            [structurizr-clj.tags :as structurizr.tags]))
+            [structurizr-clj.style :as structurizr.style]
+            [structurizr-clj.tags :as structurizr.tags]
+            [structurizr-clj.view :as structurizr.view]
 
 (defworkspace example
   [workspace (structurizr/new-workspace "Getting Started" "This is a model of my software system")]
@@ -28,22 +30,22 @@ _(This is a libary in alpha version, it's very likely to change)_
     (structurizr/uses user software-system "Uses")
     (structurizr/uses yo-service database "Persists data" "Datomic")
     (defviews [views                (structurizr/views workspace)
-               containers-view      (structurizr/create-container-view views software-system "Containers" "An example of Container context diagram")
-               software-system-view (structurizr/create-system-context-view views software-system "System Context" "An example of a System Context diagram")]
-      (defstyles [styles (structurizr/styles views)]
-        (doto (structurizr/add-element-style styles structurizr.tags/person)
-              (structurizr/shape structurizr.shape/person))
-        (doto (structurizr/add-element-style styles "Database")
-              (structurizr/shape structurizr.shape/cylinder))
-        (doto (structurizr/add-element-style styles "Main")
-              (structurizr/background "#800080")
-              (structurizr/color "#ffffff")))
+               containers-view      (structurizr.view/create-container views software-system "Containers" "An example of Container context diagram")
+               software-system-view (structurizr.view/create-system-context views software-system "System Context" "An example of a System Context diagram")]
+      (defstyles [styles (structurizr.view/styles views)]
+        (doto (structurizr.style/add-element styles structurizr.tags/person)
+              (structurizr.style/shape structurizr.shape/person))
+        (doto (structurizr.style/add-element styles "Database")
+              (structurizr.style/shape structurizr.shape/cylinder))
+        (doto (structurizr.style/add-element styles "Main")
+              (structurizr.style/background "#800080")
+              (structurizr.style/color "#ffffff")))
       (doto software-system-view
-            structurizr/add-all-software-systems
-            structurizr/add-all-people)
+            structurizr.view/add-software-systems
+            structurizr.view/add-people)
       (doto containers-view
-            structurizr/add-all-software-systems
-            structurizr/add-all-containers))))
+            structurizr.view/add-software-systems
+            structurizr.view/add-containers))))
 ```
 
 <p align="center">
@@ -76,13 +78,14 @@ Structurizr Java supports renders to PlantUML, Mermaid, JSON and publish the wor
 ``` clojure
 (ns render-example
   (:require [structurizr-clj.core :refer [defmodel defviews defworkspace] :as structurizr]
-            [structurizr-clj.render :as structurizr.render]))
+            [structurizr-clj.render :as structurizr.render]
+            [structurizr-clj.view :as structurizr.view]))
 
 ;; Asuming an example workspace is define
 (def views (structurizr/views example))
 
 ;; There might be many system contex views define, in this case it takes the first one
-(def system-context-view (first (structurizr.render/system-context-views views))) 
+(def system-context-view (first (structurizr.view/system-contexts views))) 
 
 (structurizr.render/mermaid system-context-view) ;; Returns the string mermaid code
 (structurizr.render/mermaid-writer system-context-view "path/mermaid.txt") ;; Writes a file with the mermaid code to the given path
@@ -94,13 +97,14 @@ Structurizr Java supports renders to PlantUML, Mermaid, JSON and publish the wor
 ``` clojure
 (ns render-example
   (:require [structurizr-clj.core :refer [defmodel defviews defworkspace] :as structurizr]
-            [structurizr-clj.render :as structurizr.render]))
+            [structurizr-clj.render :as structurizr.render]
+            [structurizr-clj.view :as structurizr.view]))
 
 ;; Asuming an example workspace is define
 (def views (structurizr/views example))
 
 ;; There might be many system contex views define, in this case it takes the first one
-(def system-context-view (first (structurizr.render/system-context-views views))) 
+(def system-context-view (first (structurizr.view/system-contexts views))) 
 
 (structurizr.render/plantuml system-context-view) ;; Returns the string plantuml code
 (structurizr.render/plantuml-writer system-context-view "path/plantuml.txt") ;; Writes a file with the plantuml code to the given path
