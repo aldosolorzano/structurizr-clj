@@ -33,9 +33,9 @@
 
 (deftest json-test
   (let [path           (str tmp "/my-workspace-test.json")
-        _json          (structurizr.render/workspace->json my-workspace path)
+        _json          (structurizr.render/workspace->json workspace path)
         my-workspace-2 (structurizr.render/json->workspace path)
         my-workspace-3 (structurizr.render/json->workspace "resources/json-workspaces/my-workspace-test.json")]
-    (is (= (.getName my-workspace) (.getName my-workspace-2)))
-    (is (= (.getDescription my-workspace) (.getDescription my-workspace-2)))
+    (is (= (.getName workspace) (.getName my-workspace-2)))
+    (is (= (.getDescription workspace) (.getDescription my-workspace-2)))
     (is (= "Getting Started" (.getName my-workspace-3)))))
