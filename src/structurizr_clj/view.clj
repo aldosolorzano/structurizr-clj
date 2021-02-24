@@ -32,7 +32,7 @@
 
 (defn create-system-landscape
   "Creates SystemLandscape view "
-  [views  key description]
+  [views key description]
   (.createSystemLandscapeView views key description))
 
 (defn create-system-context
@@ -84,4 +84,3 @@
   "Adds all components to the view"
   [view]
   (.addAllComponents view))
-
