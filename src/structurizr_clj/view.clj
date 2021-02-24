@@ -50,15 +50,20 @@
   [views container key description]
   (.createComponentView views container key description))
 
+(defn remove-element
+  "Removes an individual element from this view"
+  [view element]
+  (.remove view element))
+
 (defn add-element
   "Adds te given element to this view, including relationships to/from that element"
   [view element]
   (.add view element))
 
-(defn remove-element
-  "Removes an individual element from this view"
-  [view element]
-  (.remove view element))
+(defn add-elements
+  "Adds all elements to the view"
+  [view]
+  (.addAllElements view))
 
 (defn add-people
   "Adds all person elements to the view"
@@ -80,7 +85,3 @@
   [view]
   (.addAllComponents view))
 
-(defn add-elements
-  "Adds all elements to the view"
-  [view]
-  (.addAllElements view))
