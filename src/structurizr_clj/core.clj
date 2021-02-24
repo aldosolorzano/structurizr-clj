@@ -5,12 +5,13 @@
 ;; Tags
 
 (defn add-tags
-  [item tags]
+  "Add given tags to given element"
+  [element tags]
   (if (empty? tags)
-    item
+    element
     (do
-      (.addTags item (into-array tags))
-      item)))
+      (.addTags element (into-array tags))
+      element)))
 
 ;; Workspace
 
@@ -21,6 +22,11 @@
 (defn model
   [workspace]
   (.getModel workspace))
+
+(defn views
+  "Get views from workspace"
+  [workspace]
+  (.getViews workspace))
 
 ;; Model
 
@@ -58,86 +64,8 @@
   ([node-a node-b description technology]
    (.uses node-a node-b description technology)))
 
-;; Views
-
-(defn views
-  "Get views from workspace"
-  [workspace]
-  (.getViews workspace))
-
-(defn create-system-landscape-view
-  "Creates SystemLandscape view "
-  [views  key description]
-  (.createSystemLandscapeView views key description))
-
-(defn create-system-context-view
-  "Creates SystemContextView for given software-system"
-  [views software-system key description]
-  (.createSystemContextView views software-system key description))
-
-(defn create-container-view
-  "Creates ContainerView for given software-system"
-  [views software-system key description]
-  (.createContainerView views software-system key description))
-
-(defn create-component-view
-  "Creates ComponentView for given container"
-  [views container key description]
-  (.createComponentView views container key description))
-
-(defn configuration
-  "Gets configuration for given views"
-  [views]
-  (.getConfiguration views))
-
-(defn styles
-  "Get styles HashSet for given views"
-  [views]
-  (.getStyles (configuration views)))
-
-(defn add-element-style
-  [styles tag]
-  (.addElementStyle styles tag))
-
-(defn background
-  "Add background to style-item"
-  [style-item hex]
-  (.background style-item hex))
-
-(defn color
-  "Add color to style-item"
-  [style-item hex]
-  (.color style-item hex))
-
-(defn shape
-  "Add shape to style-item"
-  [style-item shape-name]
-  (.shape style-item  shape-name))
-
-;; Renders
-
-(defn add-all-people
-  [view]
-  (.addAllPeople view))
-
-(defn add-all-software-systems
-  [view]
-  (.addAllSoftwareSystems view))
-
-(defn add-all-containers
-  [view]
-  (.addAllContainers view))
-
-(defn add-all-components
-  [view]
-  (.addAllComponents view))
-
-(defn add-all-elements
-  [view]
-  (.addAllElements view))
-
 (defmacro defworkspace
-  "NOTE: Rework todo, Creates a workspace and binds it to Var name"
+  "Creates a workspace and binds it to Var name"
   [& params]
   (let [workspace-name                   (first params)
         [workspace-binding :as bindings] (second params)
