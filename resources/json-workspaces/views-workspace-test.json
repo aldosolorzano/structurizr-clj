@@ -1,0 +1,106 @@
+{
+  "id" : 0,
+  "name" : "My Workspace",
+  "description" : " My Workspace Architecture",
+  "configuration" : { },
+  "model" : {
+    "softwareSystems" : [ {
+      "id" : "1",
+      "tags" : "Element,Software System",
+      "name" : "My System",
+      "description" : "System",
+      "location" : "Unspecified",
+      "containers" : [ {
+        "id" : "3",
+        "tags" : "Element,Container,Database",
+        "name" : "Database",
+        "description" : "Main database",
+        "technology" : "Datomic"
+      }, {
+        "id" : "2",
+        "tags" : "Element,Container,Main",
+        "name" : "Yo",
+        "description" : "Service",
+        "relationships" : [ {
+          "id" : "5",
+          "tags" : "Relationship",
+          "sourceId" : "2",
+          "destinationId" : "3",
+          "description" : "Persists data",
+          "technology" : "Datomic"
+        } ],
+        "technology" : "Clojure",
+        "components" : [ {
+          "id" : "4",
+          "tags" : "Element,Component",
+          "name" : "HTTP",
+          "description" : "Allows http request calls",
+          "technology" : "Component",
+          "size" : 0
+        } ]
+      } ]
+    } ]
+  },
+  "documentation" : { },
+  "views" : {
+    "systemLandscapeViews" : [ {
+      "description" : "My services",
+      "key" : "System Landscape view",
+      "enterpriseBoundaryVisible" : true,
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      } ]
+    } ],
+    "systemContextViews" : [ {
+      "softwareSystemId" : "1",
+      "description" : "My services",
+      "key" : "System Context view",
+      "enterpriseBoundaryVisible" : true,
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      } ]
+    } ],
+    "containerViews" : [ {
+      "softwareSystemId" : "1",
+      "description" : "My services",
+      "key" : "Containers view",
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "relationships" : [ {
+        "id" : "5"
+      } ],
+      "elements" : [ {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      } ]
+    } ],
+    "componentViews" : [ {
+      "description" : "HTTP interaction",
+      "key" : "Component view",
+      "containerId" : "2",
+      "externalContainerBoundariesVisible" : false,
+      "elements" : [ {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "styles" : { },
+      "terminology" : { }
+    }
+  }
+}

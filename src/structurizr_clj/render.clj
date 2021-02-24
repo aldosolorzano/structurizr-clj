@@ -4,26 +4,6 @@
            (com.structurizr.io.plantuml StructurizrPlantUMLWriter)
            (com.structurizr.util WorkspaceUtils)))
 
-(defn get-key
-  [view]
-  (.getKey view))
-
-(defn system-landscape-views
-  [views]
-  (.getSystemLandscapeViews views))
-
-(defn system-context-views
-  [views]
-  (.getSystemContextViews views))
-
-(defn container-views
-  [views]
-  (.getContainerViews views))
-
-(defn component-views
-  [views]
-  (.getComponentViews views))
-
 (defn plantuml
   "Receives a structurizr.View and returns the plantUML encoding as string"
   [view]
