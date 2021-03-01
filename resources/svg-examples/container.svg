@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="370px" preserveAspectRatio="none" style="width:221px;height:370px;" version="1.1" viewBox="0 0 221 370" width="221px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="212" x="2" y="16.708">My System - Containers</text><!--MD5=[2f4c0b45b39d59c63bd650b26bcc871b]
+cluster My System\n[Software System]--><polygon fill="#FFFFFF" points="32.5,26.9531,185.5,26.9531,192.5,65.5469,195.5,65.5469,195.5,342.9531,32.5,342.9531,32.5,26.9531" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="32.5" x2="192.5" y1="65.5469" y2="65.5469"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="85" x="67.5" y="41.9482">My System</text><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="36.5" y="58.2451">[Software System]</text><!--MD5=[5721696d2af8d327c8f4e7ea88061d17]
+entity 3--><rect fill="#DDDDDD" height="82.8594" style="stroke:#9A9A9A;stroke-width:1.5;" width="123" x="52" y="243.9531"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="83" x="72" y="268.8047">Database</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="103" x="62" y="281.8604">[Container: Datomic]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="115.5" y="297.2139"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="100" x="63.5" y="313.5107">Main database</text><!--MD5=[773709cb2207c097691e7e7d3d2cc787]
+entity 2--><rect fill="#DDDDDD" height="82.8594" style="stroke:#9A9A9A;stroke-width:1.5;" width="116" x="52.5" y="77.9531"/><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="23" x="99" y="102.8047">Yo</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="96" x="62.5" y="115.8604">[Container: Clojure]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="112.5" y="131.2139"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="85.5" y="147.5107">Service</text><!--MD5=[eeb69082328d10abd3b14fdeede0d8a3]
+link 2 to 3--><path d="M111.24,160.9931 C111.67,184.5431 112.22,214.2931 112.66,238.6931 " fill="none" id="2-to-3" style="stroke:#707070;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="112.76,243.8131,116.6047,234.7457,112.6741,238.8139,108.6059,234.8832,112.76,243.8131" style="stroke:#707070;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="63" x="112.5" y="201.2354">Persists data</text><text fill="#000000" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="39" x="124.5" y="211.0195">[Datomic]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="68" y="361.9482">My services</text><!--MD5=[9105afb90d6bbd5b2d01bea2b11ebc96]
+@startuml(id=Containers_view)
+title My System - Containers
+caption My services
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+hide stereotype
+skinparam rectangle<<2>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9A9A9A
+}
+skinparam rectangle<<3>> {
+  BackgroundColor #dddddd
+  FontColor #000000
+  BorderColor #9A9A9A
+}
+package "My System\n[Software System]" {
+  rectangle "==Database\n<size:10>[Container: Datomic]</size>\n\nMain database" <<3>> as 3
+  rectangle "==Yo\n<size:10>[Container: Clojure]</size>\n\nService" <<2>> as 2
+}
+2 .[#707070].> 3 : "Persists data\n<size:8>[Datomic]</size>"
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 01:55:08 CST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
