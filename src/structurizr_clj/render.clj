@@ -2,13 +2,31 @@
   (:require [clojure.java.io :as io])
   (:import (com.structurizr.io.mermaid MermaidWriter)
            (com.structurizr.io.plantuml StructurizrPlantUMLWriter)
-           (com.structurizr.util WorkspaceUtils)))
-
+           (com.structurizr.util WorkspaceUtils)
+           (java.io ByteArrayOutputStream)
+           (java.nio.charset Charset)
+           (net.sourceforge.plantuml FileFormat
+                                     FileFormatOption
+                                     SourceStringReader)))
 (defn plantuml
   "Receives a structurizr.View and returns the plantUML encoding as string"
   [view]
   (let [writer (StructurizrPlantUMLWriter.)]
     (.toString writer view)))
+
+(defn plantuml->svg
+  [plantuml-str]
+  (let [reader (SourceStringReader. plantuml-str)]
+    (with-open [output-stream (ByteArrayOutputStream.)]
+      (.generateImage reader output-stream (FileFormatOption. FileFormat/SVG))
+      (String. (.toByteArray output-stream) (Charset/forName "UTF-8")))))
+
+(defn svg-writer
+  [view path]
+  (let [plantuml-str (plantuml view)
+        svg          (plantuml->svg plantuml-str)]
+    (io/make-parents path)
+    (spit path svg)))
 
 (defn mermaid
   "Receives a structurizr.View and returns the mermaid encoding as string"
