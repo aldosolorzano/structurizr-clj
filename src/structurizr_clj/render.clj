@@ -19,11 +19,13 @@
 (defn plantuml-writer
   "Receives a structurizr.View and a path and writes the plantUML code to the file"
   [view path]
+  (io/make-parents path)
   (spit path (plantuml view)))
 
 (defn mermaid-writer
   "Receives a structurizr.View and a path and writes the mermaid code to the file"
   [view path]
+  (io/make-parents path)
   (spit path (mermaid view)))
 
 (defn workspace->json
