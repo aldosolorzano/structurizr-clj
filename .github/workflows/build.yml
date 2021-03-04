@@ -21,5 +21,7 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-lein-${{ hashFiles('**/project.clj') }}
           restore-keys: ${{ runner.os }}-lein-
+      -name: Install Graphviz
+        run: sudo apt install graphviz
       - name: Run test
         run: lein test
