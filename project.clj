@@ -13,7 +13,8 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [com.structurizr/structurizr-client "1.6.3"]
                  [com.structurizr/structurizr-plantuml "1.5.0"]
-                 [com.structurizr/structurizr-mermaid "1.4.0"]]
+                 [com.structurizr/structurizr-mermaid "1.4.0"]
+                 [net.sourceforge.plantuml/plantuml "1.2021.1"]]
 
   :profiles {:dev {:dependencies [[clj-kondo "2021.02.13"]
                                   [cljfmt "0.7.0"]]}}
