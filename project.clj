@@ -1,4 +1,4 @@
-(defproject structurizr-clj "0.2.1-SNAPSHOT"
+(defproject structurizr-clj "0.2.1"
   :description "Wrapper for structurizr in Java"
   :url "https://github.com/aldosolorzano/structurizr-clj"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
