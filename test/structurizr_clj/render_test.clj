@@ -22,14 +22,11 @@
 (deftest plantuml-test
   (is (= plantuml-str (structurizr.render/plantuml container-view))))
 
-(deftest plantuml->svg-test
-  (is (= (slurp "resources/svg-examples/container.svg")
-         (structurizr.render/plantuml->svg plantuml-str))))
-
 (deftest svg-writer-test
   (testing "File is writen with view content"
-    (structurizr.render/svg-writer system-context-view svg-path)
-    (is (true? (.exists (io/file svg-path))))))
+    (structurizr.render/svg-writer container-view svg-path)
+    (is (= (slurp "resources/svg-examples/container.svg")
+           (slurp svg-path)))))
 
 (deftest plantuml-writer-test
   (testing "File is writen with view content"
