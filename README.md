@@ -8,6 +8,42 @@ Go to the [Structurizr documentation](https://github.com/structurizr/java#table-
 
 _(This is a libary in alpha version, it's very likely to change)_
 
+## !!IMPORTANT!!
+The library is in been updated and maybe some of the current api will change, as of today it seems that the core functions should remain the same and the only ones that could be impacted are the creation ones, such as `defworkspace defmodel defviews` etc. The reasoning behind this is that the naming of these functions is inconsistent with a Clojure convention, `def` forms bind a new named var in the current namespace, therefore the current semantics of the library are confusing. Also I want to make the creation and reading of a workspace data-centric. This means that to create a workspace, a map can be used with some tagged-literals that will help to make the relationship, add views and styles. Here is a glimpse on how we are evisioning the data-centric definition of a workspace.
+
+#### Some benefits
+- A workspace is a map and can easily be translated to edn
+- No need to deal with Structurizr Java library to define your workspace structure until the moment it's render
+- On the current version, to send a workspace you need to first create it in the Java library and then translate it to json. With this approach everything remains as edn or clojure syntax and only when need to be render it builds all the objects.
+
+``` clojure
+(def new-example
+  {:key         "Getting Started"
+   :description "This is a model of my software system"
+   :model      {:persons          [{:key         "User"
+                                    :description "A user of my software system"
+                                    :tags        #{structurizr.tags/person}
+                                    :uses        ""}]
+                :software-systems [{:key         "Software System"
+                                    :description "My software system"
+                                    :containers  [{:key         "Yo"
+                                                   :description "Service"
+                                                   :technology  "Clojure"
+                                                   :tags        #{"Main"}
+                                                   :uses        #structurizr/use ["Database" "Uses" "Datomic"]}
+                                                  {:key         "Database"
+                                                   :description "Main database"
+                                                   :technology  "Datomic"
+                                                   :tags        #{"Database"}}]}]}
+   :styles [#structurizr/style {:tag   structurizr.tags/person
+                                :shape structurizr.shape/person}
+            #structurizr/style {:tag   "Database"
+                                :shape structurizr.shape/cylinder}
+            #structurizr/style {:tag        "Main"
+                                :background "#800080"
+                                :color      "#ffffff"}]})
+```
+
 ## Example
 
 ``` clojure
