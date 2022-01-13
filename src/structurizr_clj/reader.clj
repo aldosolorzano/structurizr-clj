@@ -66,5 +66,10 @@
                                                    :description "Main database"
                                                    :technology  "Datomic"
                                                    :tags        #{"Database"}}]}]}
-   :views       []
-   :styles      []})
+   :styles [#structurizr/style {:tag structurizr.tags/person
+                                :shape structurizr.shape/person}
+            #structurizr/style {:tag "Database"
+                                :shape structurizr.shape/cylinder}
+            #structurizr/style {:tag "Main"
+                                :background "#800080"
+                                :color "#ffffff"}]})
