@@ -7,13 +7,25 @@
             [structurizr-clj.render :as render]))
 
 (defrecord UsesLink [to-node description technology])
+(defrecord View [kind software-system key-id description ops])
+(defrecord Style [tag shape color background])
 
 (defn uses-reader [[to-node description technology]]
   (->UsesLink to-node description technology))
 
-(defn read-workspace [workspace-data]
-  (let [workspace  (structurizr/new-workspace (:key workspace-data) (:description workspace-data))
-        model      (structurizr/model workspace)
+(defn containers-view-reader [view-map]
+  (map->View (merge {:kind :container} view-map)))
+
+(defn software-system-view-reader [view-map]
+  (map->View (merge {:kind :sofware-system} view-map)))
+
+(defn software-system-view-reader [style-map]
+  (map->Style style-map))
+
+
+(defn relationships
+  [workspace-data workspace]
+  (let [model      (structurizr/model workspace)
         sf-systems (get-in workspace-data [:model :software-systems])
         persons    (get-in workspace-data [:model :persons])
         [p-instances p-relationships]
@@ -75,7 +87,25 @@
                                        description
                                        technology))
                    to-nodes)))
+    instances-index))
+
+(defn add-views
+  "Adds the views to the workspace using the data in the workspace-data"
+  [workspace-data workspace instances-index])
+
+(defn add-styles
+  "Adds the views to the workspace using the data in the workspace-data"
+  [workspace-data views])
+
+(defn read-workspace
+  [workspace-data]
+  (let [workspace (structurizr/new-workspace (:key workspace-data) (:description workspace-data))]
+    (->> workspace
+         (relationships workspace-data)
+         (add-views workspace-data workspace)
+         (add-styles workspace-data))
     workspace))
+
 
 (def new-example
   {:key         "Getting Started"
